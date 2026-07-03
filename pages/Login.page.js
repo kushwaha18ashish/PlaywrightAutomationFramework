@@ -8,10 +8,10 @@ class LoginPage extends BasePage {
         
         // Define elements using selectors from environment configuration
         const pageSelectors = this.selectors.login || {};
-        const usernameSelector = pageSelectors.usernameInput || '#username';
+        const usernameSelector = pageSelectors.usernameInput || '#user-name';
         const passwordSelector = pageSelectors.passwordInput || '#password';
-        const loginBtnSelector = pageSelectors.loginButton || '#login-btn';
-        const errorMessageSelector = pageSelectors.errorMessage || '.error-message';
+        const loginBtnSelector = pageSelectors.loginButton || '#login-button';
+        const errorMessageSelector = pageSelectors.errorMessage || '[data-test="error"]';
 
         this.usernameInput = new BaseElement(this.page, usernameSelector, 'Username Input');
         this.passwordInput = new BaseElement(this.page, passwordSelector, 'Password Input');
@@ -24,7 +24,7 @@ class LoginPage extends BasePage {
         // Retrieve baseUrl from EnvironmentManager (assuming it's set in process.env.BASE_URL or via Env Manager instance)
         const EnvironmentManager = require('../config/EnvironmentManager');
         const baseUrl = EnvironmentManager.getBaseUrl();
-        await this.navigateTo(`${baseUrl}/login`);
+        await this.navigateTo(baseUrl);
     }
 
     async enterCredentials(username, password) {
