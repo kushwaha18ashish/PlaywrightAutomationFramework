@@ -19,8 +19,7 @@ test.describe('Login Feature', () => {
 
         await loginPage.open();
 
-        // Use default data if testData.json is empty
-        const user = testData.validUser || { username: 'standard_user', password: 'secret_sauce' };
+        const user = testData.validUser;
         await loginPage.enterCredentials(user.username, user.password);
         await loginPage.clickLogin();
 
@@ -38,7 +37,7 @@ test.describe('Login Feature', () => {
 
         await loginPage.open();
 
-        const user = testData.invalidUser || { username: 'locked_out_user', password: 'secret_sauce' };
+        const user = testData.invalidUser;
         await loginPage.enterCredentials(user.username, user.password);
         await loginPage.clickLogin();
 
