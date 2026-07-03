@@ -7,10 +7,12 @@ class DashboardPage extends BasePage {
         super(page);
         
         const pageSelectors = this.selectors.dashboard || {};
-        const welcomeSelector = pageSelectors.welcomeMessage || '#welcome-msg';
-        const logoutBtnSelector = pageSelectors.logoutButton || '#logout-btn';
+        const welcomeSelector = pageSelectors.welcomeMessage || '.title';
+        const logoutBtnSelector = pageSelectors.logoutButton || '#logout_sidebar_link';
+        const menuBtnSelector = pageSelectors.menuButton || '#react-burger-menu-btn';
 
         this.welcomeMessage = new BaseElement(this.page, welcomeSelector, 'Welcome Message');
+        this.menuButton = new BaseElement(this.page, menuBtnSelector, 'Menu Button');
         this.logoutButton = new BaseElement(this.page, logoutBtnSelector, 'Logout Button');
     }
 
@@ -19,6 +21,7 @@ class DashboardPage extends BasePage {
     }
 
     async clickLogout() {
+        await this.menuButton.click();
         await this.logoutButton.click();
     }
 }
